@@ -8,50 +8,83 @@
 		<title>MLMGame</title>
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link href="layout.css" rel="stylesheet">
+		<link href="./layout.css" rel="stylesheet">
 		
 	</head>
 	
 	<body>
 		
 		<div class="load">
-			<div class="load-grid">
+			<div class="grid">
 				<div class="load-msg"><h1>Loading TronWeb...</h1></div>
 			</div>
 		</div>
 		
-		<div class="content" hidden>
-			<div class="content-grid">
+		<div class="connect-section" hidden>
+			<div class="grid">
 			
 				<div class="input-group address">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="basic-addon1">contract address</span>
 					</div>
-					<input id="address" type="text" class="form-control" placeholder="address" aria-label="address" value="">
+					<input id="contract-address" type="text" class="form-control" placeholder="address" aria-label="address" value="">
 				</div>
-				<button id="connect" type="button" class="btn btn-success connect-button">Connect</button>
-				<div class="dropdown-divider divider"></div>
-			
-				<div class="contract-balance"><a>Contract balance: <strong id="contract-balance">123213123 TRX</strong></a></div>
-				<div class="contract-withdrawn"><a>Total withdrawn from contract: <strong id="contract-withdrawn">123123 TRX</strong></a></div>
-				  
-				<div class="user-balance"><a>Your balance: <strong id="user-balance">12313 TRX</strong></a></div>
-				<div class="user-withdrawn"><a>Your withdrawals: <strong id="user-withdrawn">123 TRX</strong></a></div>
-				  
-				<div class="referred-users"><a>Referred: <strong id="referred-users">12 users</strong></a></div>
-				<div class="referral-reward"><a>Referral reward: <strong id="referral-reward">12312 TRX</strong></a></div>
-				  
-				<div class="possible-withdrawal"><a>You can currently withdraw: <strong id="possible-withdrawal">1231231 TRX</strong></a></div>
-				<button id="withdraw" type="button" class="btn btn-success withdraw">Withdraw</button>
-				  
-				<div class="withdrawal-maximum"><a>You are able to withdraw up to: <strong id="withdrawal-maximum">1231231 TRX</strong></a></div>
-				<div class="referral-percentage"><a>You get: <strong id="referral-percentage">10%</strong> of your referral's deposits</a></div>
+				<button id="connect-button" type="button" class="btn btn-success connect-button" disabled>Connect</button>
+				
+				<h1 id="invalid-contract-error" style="color: red" hidden>Invalid Contract Address!<h1>
 				
 			</div>
 		</div>
 		
+		<div class="deposit-section" hidden>
+			<div class="grid">
+				
+				<div class="contract-balance"><a>Contract balance: <strong id="contract-balance-deposit">0 TRX</strong></a></div>
+				<div class="contract-withdrawn"><a>Total withdrawn from contract: <strong id="contract-withdrawn-deposit">0 TRX</strong></a></div>
+			
+				<!--div class="input-group referral" style="padding: 0px">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">referral address</span>
+					</div>
+					<input id="referral-address" type="text" class="form-control" placeholder="address" aria-label="address" value="">
+				</div-->
+			
+				<div class="input-group deposit-amount" style="padding: 0px">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1">deposit amount</span>
+					</div>
+					<input id="deposit-amount" type="number" class="form-control" placeholder="TRX deposit" aria-label="TRX deposit" value="">
+				</div>
+				<button id="deposit-button" type="button" class="btn btn-success deposit-button" disabled>Deposit</button>
+				
+			</div>
+		</div>
+		
+		<div class="user-section" hidden>
+			<div class="grid">
+				
+				<div class="contract-balance"><a>Contract balance: <strong id="contract-balance-user">0 TRX</strong></a></div>
+				<div class="contract-withdrawn"><a>Total withdrawn from contract: <strong id="contract-withdrawn-user">0 TRX</strong></a></div>
+				  
+				<div class="user-deposit"><a>Your deposit: <strong id="user-deposit">0 TRX</strong></a></div>
+				<div class="user-withdrawn"><a>Withdrawn rewards: <strong id="user-withdrawn">0 TRX</strong></a></div>
+				  
+				<div class="referred-users"><a>You have referred: <strong id="referred-users">0 users</strong></a></div>
+				<div class="referral-reward"><a>Withdrawn referral rewards: <strong id="referral-reward">0 TRX</strong></a></div>
+				  
+				<div class="possible-withdrawal"><a>You can currently withdraw: <strong id="possible-withdrawal">0 TRX</strong></a></div>
+				<button id="withdraw-button" type="button" class="btn btn-success withdraw-button" disabled>Withdraw</button>
+				  
+				<div class="withdrawal-maximum"><a>You are able to withdraw up to: <strong id="withdrawal-maximum">0 TRX</strong></a></div>
+				<div class="referral-percentage"><a>You get: <strong id="referral-percentage">10%</strong> of your referral's deposit</a></div>
+				
+			</div>
+				
+			<span>Your referral link: <a id="referral-link" href=""></a></span>
+		</div>
+		
 		<div class="error" hidden>
-			<div class="error-grid">
+			<div class="grid">
 				<div class="error-msg"><h1>TronWeb not found!</h1></div>
 			</div>
 		</div>
@@ -59,22 +92,9 @@
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 		
-		<script>
-			$(function()
-			{
-				$(".load").attr("hidden", true);
-				
-				if(window.tronWeb && window.tronWeb.defaultAddress.base58)
-				{
-					$(".content").removeAttr("hidden");
-				}
-				else
-				{
-					$(".error").removeAttr("hidden");
-				}
-			});
-		</script>
+		<script src="./contract-handle.js"></script>
 		
 	</body>
 </html>
