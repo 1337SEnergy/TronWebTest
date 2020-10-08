@@ -7,7 +7,7 @@ body { margin-top: 20px; }
 	margin: auto;
 }
 
-.load-grid
+.load > div.grid
 {
 	display: grid;
 	grid-template-areas: 'load';
@@ -16,7 +16,7 @@ body { margin-top: 20px; }
 	border-radius: 10px;
 }
 
-.load-grid > div
+.load > div.grid > div
 {
 	background-color: rgba(255, 255, 255, 0.8);
 	text-align: center;
@@ -25,21 +25,80 @@ body { margin-top: 20px; }
 	border-radius: 5px;
 }
 
-/* CONTENT */
-.content
+
+/* CONNECT SECTION */
+.connect-section
+{
+	max-width: 40%;
+	margin: auto;
+}
+
+.connect-section > div.grid
+{
+	display: grid;
+	grid-template-areas: 'address address address address address connect-button';
+	grid-gap: 10px;
+}
+
+.connect-section > div.grid > div
+{
+	text-align: center;
+}
+
+div.address { grid-area: address; }
+.connect-button { grid-area: connect-button; }
+
+
+
+/* DEPOSIT SECTION */
+.deposit-section
 {
 	max-width: 60%;
 	margin: auto;
 }
 
-.content-grid
+.deposit-section > div.grid
 {
 	display: grid;
 	grid-template-areas:
-		'address address address address address connect-button'
-		'divider divider divider divider divider divider'
 		'contract-balance contract-balance contract-balance contract-withdrawn contract-withdrawn contract-withdrawn'
-		'user-balance user-balance user-balance user-withdrawn user-withdrawn user-withdrawn'
+		'deposit-amount deposit-amount deposit-amount deposit-amount deposit-amount deposit';
+
+	grid-gap: 10px;
+	background-color: #2196F3;
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.deposit-section > div.grid > div
+{
+	background-color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+	padding: 5px 0;
+	font-size: 20px;
+	border-radius: 5px;
+}
+
+.contract-balance { grid-area: contract-balance; }
+.contract-withdrawn { grid-area: contract-withdrawn; }
+.referral { grid-area: referral; }
+.deposit-amount { grid-area: deposit-amount; }
+.deposit-button { grid-area: deposit; }
+
+
+/* USER SECTION */
+.user-section
+{
+	max-width: 60%;
+	margin: auto;
+}
+
+.user-section > div.grid
+{
+	display: grid;
+	grid-template-areas:
+		'contract-balance contract-balance contract-balance contract-withdrawn contract-withdrawn contract-withdrawn'
+		'user-deposit user-deposit user-deposit user-withdrawn user-withdrawn user-withdrawn'
 		'referred-users referred-users referred-users referral-reward referral-reward referral-reward'
 		'possible-withdrawal possible-withdrawal possible-withdrawal possible-withdrawal possible-withdrawal withdraw'
 		'withdrawal-maximum withdrawal-maximum withdrawal-maximum withdrawal-maximum referral-percentage referral-percentage';
@@ -50,28 +109,26 @@ body { margin-top: 20px; }
 	border-radius: 10px;
 }
 
-.content-grid > div
+.user-section > div.grid > div
 {
 	background-color: rgba(255, 255, 255, 0.8);
 	text-align: center;
-	padding: 10px 0;
+	padding: 5px 0;
 	font-size: 20px;
 	border-radius: 5px;
 }
 
-div.address { grid-area: address; padding: 0px; }
-.connect-button { grid-area: connect-button; }
 .contract-balance { grid-area: contract-balance; }
-.user-balance { grid-area: user-balance; }
 .contract-withdrawn { grid-area: contract-withdrawn; }
+.user-deposit { grid-area: user-deposit; }
 .user-withdrawn { grid-area: user-withdrawn; }
 .referred-users { grid-area: referred-users; }
 .referral-reward { grid-area: referral-reward; }
 .possible-withdrawal { grid-area: possible-withdrawal; }
-.withdraw { grid-area: withdraw; }
+.withdraw-button { grid-area: withdraw; }
 .withdrawal-maximum { grid-area: withdrawal-maximum; }
 .referral-percentage { grid-area: referral-percentage; }
-div.divider { grid-area: divider; padding: 0px; margin: 0px; }
+
 
 /* ERROR */
 .error
@@ -80,7 +137,7 @@ div.divider { grid-area: divider; padding: 0px; margin: 0px; }
 	margin: auto;
 }
 
-.error-grid
+.error > div.grid
 {
 	display: grid;
 	grid-template-areas: 'error';
@@ -89,7 +146,7 @@ div.divider { grid-area: divider; padding: 0px; margin: 0px; }
 	border-radius: 10px;
 }
 
-.error-grid > div
+.error > div.grid > div
 {
 	background-color: rgba(255, 255, 255, 0.8);
 	text-align: center;
